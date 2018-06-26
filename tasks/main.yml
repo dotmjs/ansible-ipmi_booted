@@ -1,0 +1,21 @@
+- name: Set boot device
+  ipmi_boot:
+    name: "{{ ipmi_host }}"
+    bootdev: "{{ ipmi_bootdev | default('default') }}"
+    user: "{{ ipmi_user }}"
+    password: "{{ ipmi_password }}"
+  delegate_to: "{{ ipmi_delegate | default('localhost') }}"
+  register: result
+  until: result|succeeded
+  retries: 20
+  delay: 5
+
+- name: Power on system
+  ipmi_power:
+    name: "{{ ipmi_host }}"
+    state: on
+    user: "{{ ipmi_user }}"
+    password: "{{ ipmi_password }}"
+  delegate_to: "{{ ipmi_delegate | default('localhost') }}"
+
+- meta: flush_handlers

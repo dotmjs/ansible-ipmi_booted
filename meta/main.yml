@@ -1,0 +1,19 @@
+galaxy_info:
+  author: dotmjs
+  description: A role to set the boot device via IPMI and start boot process
+
+  license: BSD
+
+  min_ansible_version: 2.4
+
+  platforms:
+  - name: EL
+    versions:
+    - 7
+
+  galaxy_tags:
+  - ipmi
+  - bmc
+  - boot
+
+dependencies: []
